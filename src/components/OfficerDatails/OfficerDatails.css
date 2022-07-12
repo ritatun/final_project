@@ -1,0 +1,59 @@
+.detail-case__btn-open {
+    display: block;
+    font-size: 12px;
+}
+
+.officer-desc {
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+    width: 75%;
+    height: 69vh;
+    max-width: 1230px;
+}
+
+.officer-desc_title {
+    margin-bottom: 55px;
+}
+
+td {
+    padding: 5px;
+}
+
+.btn-save-officer {
+    margin-top: 55px;
+}
+
+.officer-desc_title {
+    margin-left: 8px;
+}
+
+@media screen and (max-width: 456px) {
+    .officer-desc_title {
+        font-size: 18px;
+    }
+
+    td {
+        font-size: 14px;
+    }
+    
+    .err-msg, .note-msg  {
+        font-size: 12px;
+        margin-left: 8px;
+    }
+
+    input {
+        width: min-content;
+    };
+}
+
+@media screen and (max-width: 422px) {
+    .officer-desc_title {
+        font-size: 16px;
+        
+    }
+
+    input, textarea, select {
+        width: 90%;
+    };
+}

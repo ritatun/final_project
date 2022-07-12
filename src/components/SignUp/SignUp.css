@@ -1,0 +1,53 @@
+.sign_up {
+    margin: 100px auto 250px;
+    width: 80%;
+}
+
+.sign-up__headding {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.sign-up__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign-up__login, .sign-up__pass, .sign-up__firstName, .sign-up__lastName {
+    margin: 5px 10px 20px;
+    width: 300px;
+    height: 21px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.sign-up__btn {
+    margin: 30px auto;
+}
+
+.sign_up-result {
+    margin: 0 auto;
+    font-size: 24px;
+    text-align: center;
+}
+
+.err-msg {
+    font-size: 16px;
+    color: red;
+}
+
+@media screen and (max-width: 375px) {
+    .sign_up{
+        margin: 100px auto 150px;
+    }
+
+    .sign-up__login, .sign-up__pass, .sign-up__firstName, .sign-up__lastName {
+        width: 250px;
+        height: 18px;
+    }
+
+    .sign_up-result {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,12 @@
+.all-cases {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.noAutorization {
+    text-align: center;
+    color: red;
+    height: 80vh;
+    margin-top: 155px;
+}
+

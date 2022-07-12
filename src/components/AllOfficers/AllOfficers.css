@@ -1,0 +1,77 @@
+.all-officers {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.headding {
+    text-align: center;
+    margin: 30px;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid white;
+    color: black;
+}
+
+.table th, .table tr {
+    text-align: center;
+    
+}
+
+.table-row {
+    border-bottom: 1px solid black;
+    height: max-content;
+}
+
+.table-btn {
+    background-color: #000000;
+    font-size: 12px;
+    margin: 3px;
+    display: inline-block;
+}
+
+.loader {
+    margin: 175px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 1750px) {
+    .big-screen {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .small-screen-officer {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 716px) {
+    .small-screen {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 485px) {
+    .table {
+        font-size: 13px;
+    }
+
+
+    .table-btn {
+        padding: 3px;
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 398px) {
+    .table {
+        font-size: 11px;
+    }
+}

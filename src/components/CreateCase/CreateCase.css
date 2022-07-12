@@ -1,0 +1,60 @@
+.createCase-container {
+    margin: 25px auto;
+    width: 75%;
+    max-width: 1250px;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.createCase-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin: 15px 5px 5px 5px;
+    font-size: 20px;
+}
+
+.case-input {
+    max-width: 400px;
+    margin-left: 5px;
+    font-size: 18px;
+    border-radius: 3px;
+    border: 1.5px solid #8A2BE2;
+}
+
+.officer-input {
+    max-width: 407px;
+}
+
+.type-input {
+    max-width: 407px;
+}
+
+.button-createCase {
+    margin: 25px 5px 55px 5px;
+    max-width: 407px;
+}
+
+.case-img {
+    width: 330px;
+}
+
+.case-img.sended {
+    opacity: 0.3;
+}
+
+.case-msg {
+    margin: 60px 30px;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 969px) {
+    .createCase-container {
+        justify-content: center;
+    }
+    .createCase-rigth {
+        display: none;
+    }
+}

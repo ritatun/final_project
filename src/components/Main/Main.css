@@ -1,0 +1,167 @@
+.main-container {
+    margin: 50px auto;
+    width: 80%;
+    font-size: 14px;
+    max-width: 1250px;
+}
+
+.main {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.description {
+    padding-right: 50px;
+    width: 50%;
+}
+
+.description-title {
+    margin-bottom: 30px;
+    font-size: 42px;
+}
+
+.description-text {
+    margin-bottom: 50px;
+    font-size: 18px;
+}
+
+.slide {
+    display: none;
+}
+
+.slide.active {
+    display: block;
+    width: 350px;
+}
+
+.button {
+    background-color: black;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.createCase {
+    text-decoration: none;
+    display: block;
+    margin-right: 10px;
+}
+
+.createCase-public {
+    text-align: center;
+}
+
+.button:hover {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(149,71,222,1) 100%);
+}
+
+.main-officer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.button:nth-child(2) {
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+
+@media screen and (max-width: 764px) {
+    .slide.active{
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 715px) {
+    .description-title {
+        font-size: 36px;
+    }
+
+    .description-text {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 631px) {
+    .description {
+        padding-right: 25px
+    }
+
+    .description-title {
+        font-size: 30px;
+    }
+
+    .description-text {
+        font-size: 14px;
+    }
+}
+
+
+@media screen and (max-width: 553px) {
+    .description {
+        padding-right: 10px
+    }
+
+    .description-title {
+        font-size: 24px;
+    }
+
+    .description-text {
+        font-size: 12px;
+    }
+
+    .slide.active{
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 513px) {
+    .createCase-public {
+        padding: 7px;
+    }
+}
+
+@media screen and (max-width: 481px) {
+    .main {
+        display: block;
+    }
+    .description {
+        width: auto;
+        padding: 0;
+    }
+    
+    .slider{
+        display: none;
+    }
+
+    .description-title {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .description-text {
+        font-size: 16px;
+        text-align: center;
+
+    }
+}
+
+@media screen and (max-width: 402px) {
+    .slider{
+        margin: 10px auto;    
+    }
+
+    .main {
+        flex-direction: column;
+    }
+
+    .createCase {
+        margin-right: 0;
+    }
+}

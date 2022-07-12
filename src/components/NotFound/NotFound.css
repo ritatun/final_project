@@ -1,0 +1,26 @@
+.not-found_img {
+    display: block;
+    margin: 150px auto;
+    height: 550px;
+}
+
+@media screen and (max-width: 572px) {
+    .not-found_img {
+        margin: 100px auto;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 456px) {
+    .not-found_img {
+        margin: 75px auto;
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .not-found_img {
+        margin: 75px auto;
+        height: 250px;
+    }
+}
