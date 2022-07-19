@@ -34,10 +34,10 @@ function LoggedUser() {
       <Link to="/createcase" className="button createCase">
         Сообщить о краже
       </Link>
-      <Link to="/allcases" className="button createCase">
+      <Link to="/cases" className="button createCase">
         Показать все сообщения о краже
       </Link>
-      <Link to="/allofficers" className="button createCase">
+      <Link to="/officers" className="button createCase">
         Показать всех сотрудников
       </Link>
     </section>

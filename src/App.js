@@ -52,8 +52,8 @@ useEffect(() => {
       <Routes>
         <Route path="" element={<Main islogged={props.state.islogged} />}></Route>
         <Route path="/createcase" element={<CreateCase />}></Route>
-        <Route path="/allcases" element={<AllCases />}></Route>
-        <Route path="/allofficers" element={<AllOfficers />}></Route>
+        <Route path="/cases" element={<AllCases />}></Route>
+        <Route path="/officers" element={<AllOfficers />}></Route>
         <Route path="/sign_in" element={<SignIn />}></Route>
         <Route path="/sign_up" element={<SignUp />}></Route>
         <Route

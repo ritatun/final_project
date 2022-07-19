@@ -8,13 +8,6 @@
     margin: 30px;
 }
 
-.table {
-    /* border-collapse: collapse;
-    
-    border: 2px solid white;
-    color: black; */
-}
-
 .table-officers {
     margin: 5px auto;
     width: 80%;
@@ -76,7 +69,6 @@
     .table {
         font-size: 14px;
     }
-
 
     .table-btn {
         padding: 3px;

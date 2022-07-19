@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./SignIn.css";
 import { connect } from "react-redux";
 import store from "../../store/store";
-import { logIn, setCurrentUser } from "../../store/action-creators";
+import { logIn } from "../../store/action-creators";
 
 const SignIn = (props) => {
   const [authorize, setAuthorize] = useState({
