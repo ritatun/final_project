@@ -28,6 +28,11 @@ const SignIn = (props) => {
 
   function handleSignIn(e) {
     e.preventDefault();
+
+    if (!authorize.login || !authorize.pass) {
+      setMsg("Адрес электронной почты и(или) пароль не введены");
+      return;
+    }
     const body = {
       email: authorize.login,
       password: authorize.pass,
@@ -54,10 +59,12 @@ const SignIn = (props) => {
   }
 
   return (
-    <section className="sign_in">
+    <main className="sign_in">
       <h1 className="sign-in__headding">Войти</h1>
       <form className="sign-in__form">
-        <label htmlFor="login">Введите логин</label>
+        <label htmlFor="login" className="sign-in__login-lable">
+          Введите адрес электронной почты
+        </label>
         <input
           className="sign-in__login"
           type="text"
@@ -80,7 +87,7 @@ const SignIn = (props) => {
           ОК
         </button>
       </form>
-    </section>
+    </main>
   );
 };
 

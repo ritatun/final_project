@@ -1,11 +1,13 @@
 .sign_up {
-    margin: 100px auto 250px;
+    margin: 25px auto 15px;
     width: 80%;
 }
 
 .sign-up__headding {
     margin-bottom: 30px;
     text-align: center;
+    font-weight: normal;
+    font-size: 24px;
 }
 
 .sign-up__form {
@@ -14,7 +16,7 @@
     align-items: center;
 }
 
-.sign-up__login, .sign-up__pass, .sign-up__firstName, .sign-up__lastName {
+.sign-up__login, .sign-up__pass, .sign-up__firstName, .sign-up__lastName, .sign-up__clientId {
     margin: 5px 10px 20px;
     width: 300px;
     height: 21px;
@@ -23,7 +25,7 @@
 }
 
 .sign-up__btn {
-    margin: 30px auto;
+    margin: 30px auto 10px;
 }
 
 .sign_up-result {

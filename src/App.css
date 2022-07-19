@@ -14,3 +14,7 @@ button {
   min-height: 100%;
   position: relative;
 }
+
+main {
+  padding-bottom: 40px;
+}

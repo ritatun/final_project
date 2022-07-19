@@ -42,7 +42,7 @@ function reducer(state = initialState, action) {
             return {...state, newCase: action.payload}
 
         case "MSG":
-            return {...state, message: action.payload}     
+            return {...state, message: action.payload}
         
         default: return state;    
     }

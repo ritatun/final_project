@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getAllCases } from "../../utils/requests";
 import Loader from "../Loader/Loader";
-
-import { getOneCase, getApprovedOfficers } from "../../utils/requests";
+import { getOneCase } from "../../utils/requests";
 
 const AllCases = (props) => {
   const localToken = localStorage.getItem("token");
@@ -34,26 +33,38 @@ const AllCases = (props) => {
     getOneCase(caseId, localtoken);
   }
 
+  function showStatus(status) {
+    if (status === "new") {
+      return "новое";
+    } else if (status === "in_progress") {
+      return "в работе";
+    } else if (status === "done") {
+      return "закрыто";
+    }
+  }
+
   if (props.state.isLoadDone) {
     if (props.state.islogged) {
       return (
-        <section className="all-cases">
-          <div className="headding">СООБЩЕНИЯ О КРАЖАХ ВЕЛОСИПЕДОВ</div>
-          <table className="table">
+        <main className="all-cases">
+          <h1 className="headding">СООБЩЕНИЯ О КРАЖАХ ВЕЛОСИПЕДОВ</h1>
+          <table className="table table-case">
             <thead>
               <tr className="table-row">
-                <th>Номер лицензии</th>
+                <th className="table-row-license">Номер лицензии</th>
                 <th>ФИО арендатора</th>
                 <th className="small-screen">Цвет велосипеда</th>
                 <th className="small-screen">Тип велосипеда</th>
                 <th className="big-screen">Дополнительный комментарий</th>
-                <th className="small-screen">Дата кражи</th>
+                <th className="small-screen">
+                  Дата <br /> кражи
+                </th>
                 <th className="big-screen">Ответственный сотрудник</th>
                 <th className="big-screen">Дата создания сообщения</th>
                 <th className="big-screen">
                   Дата последнего обновления сообщения
                 </th>
-                <th>Статус</th>
+                <th className="small-screen">Статус</th>
                 <th className="big-screen">Завершающий комментарий</th>
                 <th>Действия</th>
               </tr>
@@ -63,10 +74,12 @@ const AllCases = (props) => {
               {props.state.allCases.map((item) => {
                 return (
                   <tr className="table-row" key={item._id}>
-                    <td>{item.licenseNumber}</td>
+                    <td className="table-row-license">{item.licenseNumber}</td>
                     <td>{item.ownerFullName}</td>
                     <td className="small-screen">{item.color}</td>
-                    <td className="small-screen">{item.type}</td>
+                    <td className="small-screen">
+                      {item.type === "general" ? "обычный" : "спорт"}
+                    </td>
                     <td className="big-screen">{item.description}</td>
                     <td className="small-screen">
                       {item.date
@@ -84,9 +97,9 @@ const AllCases = (props) => {
                         ? new Date(item.updatedAt).toLocaleString()
                         : ""}
                     </td>
-                    <td>{item.status}</td>
+                    <td className="small-screen">{showStatus(item.status)}</td>
                     <td className="big-screen">{item.resolution}</td>
-                    <td>
+                    <td className="case-btns">
                       <Link
                         className="button table-btn"
                         to={`/cases/${item._id}`}
@@ -106,7 +119,7 @@ const AllCases = (props) => {
               })}
             </tbody>
           </table>
-        </section>
+        </main>
       );
     } else {
       return (

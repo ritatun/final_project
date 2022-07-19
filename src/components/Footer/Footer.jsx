@@ -2,15 +2,15 @@ import React from "react";
 import "./Footer.css";
 import Github from "../../img/GitHub.png";
 
-function Footer() {
+function Footer(props) {
   return (
-    <div className="footer-container">
+    <footer className="footer-container">
       <div className="footer">
-        <a href="https://github.com/ritatun">
+        <a className="footer-link" href="https://github.com/ritatun">
           <img className="github" src={Github} alt="github" />
         </a>
       </div>
-    </div>
+    </footer>
   );
 }
 

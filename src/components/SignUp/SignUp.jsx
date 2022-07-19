@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./SignUp.css";
 import { connect } from "react-redux";
-import store from "../../store/store";
 
 const SignUp = (props) => {
   const [authorize, setAuthorize] = useState({
@@ -10,24 +9,22 @@ const SignUp = (props) => {
     passRepeat: "",
     firstName: "",
     lastName: "",
+    clientId: "",
   });
   const [msg, setMsg] = useState("");
   const [isSuccess, setSuccess] = useState(false);
-
-  /*   useEffect(() => {}, [msg, isSuccess]); */
 
   function handleInputChange(e, id) {
     setMsg("");
     let newState = authorize;
     newState[id] = e.target.value;
     setAuthorize(newState);
-    console.log(authorize);
   }
 
   function handleSignUp(e) {
     e.preventDefault();
     if (!authorize.login) {
-      setMsg("Логин не введен");
+      setMsg("Адрес электронной почты не введен");
       return;
     }
     if (!authorize.pass) {
@@ -38,6 +35,10 @@ const SignUp = (props) => {
       setMsg("Пароли не совпадают");
       return;
     }
+    if (!authorize.clientId) {
+      setMsg("clientId не введен");
+      return;
+    }
 
     setMsg("");
 
@@ -46,7 +47,7 @@ const SignUp = (props) => {
     const body = {
       email: authorize.login,
       password: authorize.pass,
-      clientId: props.state,
+      clientId: authorize.clientId,
       firstName: authorize.firstName,
       lastName: authorize.lastName,
     };
@@ -71,7 +72,7 @@ const SignUp = (props) => {
 
   if (!isSuccess) {
     return (
-      <section className="sign_up">
+      <main className="sign_up">
         <h1 className="sign-up__headding">Зарегистрироваться</h1>
         <form className="sign-up__form">
           <label htmlFor="firstName">Введите имя</label>
@@ -90,7 +91,7 @@ const SignUp = (props) => {
             onChange={(e) => handleInputChange(e, "lastName")}
           />
 
-          <label htmlFor="login">Введите логин*</label>
+          <label htmlFor="login">Введите адрес электронной почты*</label>
           <input
             className="sign-up__login"
             type="text"
@@ -115,6 +116,16 @@ const SignUp = (props) => {
             id="passRepeat"
             onChange={(e) => handleInputChange(e, "passRepeat")}
           />
+
+          <label htmlFor="clientId">Введите Client ID*</label>
+          <input
+            className="sign-up__clientId"
+            type="text"
+            id="clientId"
+            required
+            onChange={(e) => handleInputChange(e, "clientId")}
+          />
+
           <p>* обязательное для заполнения поле</p>
           <p className="err-msg">{msg}</p>
           <button
@@ -125,7 +136,7 @@ const SignUp = (props) => {
             ОК
           </button>
         </form>
-      </section>
+      </main>
     );
   } else {
     return (

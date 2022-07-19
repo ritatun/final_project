@@ -36,12 +36,13 @@ useEffect(() => {
       .then((result) => {
         if (result.status === "OK") {
           store.dispatch(logIn());
+          console.log("токен действителен")
         } else {
-          store.dispatch(logOut()); //на всякий случай подтереть флаг залогированности пользователя
+          store.dispatch(logOut()); // подтереть флаг залогированности пользователя
         }
       });
   } else {
-    store.dispatch(logOut()); //на всякий случай подтереть флаг залогированности пользователя
+    store.dispatch(logOut()); // подтереть флаг залогированности пользователя
   }
 }, [])
 
@@ -70,8 +71,7 @@ useEffect(() => {
         <Route path="*" element={<NotFound />} />
 
       </Routes>
-
-      {/* <Footer /> */}
+      {props.state.isLoadDone ? <Footer /> : null}
     </div>
   );
 }

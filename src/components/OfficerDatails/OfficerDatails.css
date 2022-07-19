@@ -14,10 +14,15 @@
 
 .officer-desc_title {
     margin-bottom: 55px;
+    font-weight: normal;
 }
 
 td {
     padding: 5px;
+}
+
+textarea {
+    resize: vertical;
 }
 
 .btn-save-officer {
@@ -42,7 +47,7 @@ td {
         margin-left: 8px;
     }
 
-    input {
+    .officer_details-input {
         width: min-content;
     };
 }
@@ -50,10 +55,9 @@ td {
 @media screen and (max-width: 422px) {
     .officer-desc_title {
         font-size: 16px;
-        
     }
 
-    input, textarea, select {
+    .officer_details-input {
         width: 90%;
     };
 }

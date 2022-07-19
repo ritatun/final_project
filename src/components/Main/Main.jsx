@@ -5,6 +5,8 @@ import Parking from "../../img/parking.jpg";
 import Boy from "../../img/boy.jpg";
 import Wheels from "../../img/wheels.jpg";
 import Parking2 from "../../img/parking2.jpg";
+import store from "../../store/store";
+import { loadDone } from "../../store/action-creators";
 
 function NotLoggedUser() {
   return (
@@ -43,6 +45,10 @@ function LoggedUser() {
 }
 
 function Main({ islogged }) {
+  useEffect(() => {
+    store.dispatch(loadDone(true));
+  }, []);
+
   useEffect(() => {
     const slides = document.querySelectorAll(".slide");
     let i = 0;

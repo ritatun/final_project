@@ -1,4 +1,11 @@
-.createCase-container {
+.createCase-title {
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    margin: 25px auto 30px;
+}
+
+.createCase-flexcontainer {
     margin: 25px auto;
     width: 75%;
     max-width: 1250px;
@@ -19,13 +26,17 @@
 .case-input {
     max-width: 400px;
     margin-left: 5px;
-    font-size: 18px;
-    border-radius: 3px;
-    border: 1.5px solid #8A2BE2;
+    font-size: 16px;
+    border-bottom: 1.5px solid #8A2BE2;
+    font-family: 'Roboto', sans-serif;
 }
 
 .officer-input {
     max-width: 407px;
+}
+
+.date-input {
+    color: black;              
 }
 
 .type-input {
@@ -33,12 +44,32 @@
 }
 
 .button-createCase {
-    margin: 25px 5px 55px 5px;
+    margin: 25px 5px;
     max-width: 407px;
 }
 
 .case-img {
     width: 330px;
+}
+
+.createCase-rigth{
+    position: relative;
+
+}
+
+.createCase-rigth-send {
+    display: none;
+    background-image: url("../../img/correct.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+    top: 35%;
+    left: 35%;
+    position: absolute;
+}
+.createCase-rigth-send.show {
+    display: block;
 }
 
 .case-img.sended {
@@ -50,11 +81,33 @@
     font-size: 20px;
 }
 
+.case-errMsg {
+    max-width: fit-content;
+    text-align: center;
+    margin-left: 7px;
+}
+
+.case-label {
+    margin: 12px 0 5px 6px;
+    font-size: 18px;
+    text-align: left;
+}
+
 @media screen and (max-width: 969px) {
-    .createCase-container {
+    .createCase-flexcontainer {
         justify-content: center;
     }
     .createCase-rigth {
         display: none;
+    }
+}
+
+@media screen and (max-width: 456px) {
+    .case-label {
+        font-size: 16px;
+    }
+
+    .case-input {
+        font-size: 14px;
     }
 }

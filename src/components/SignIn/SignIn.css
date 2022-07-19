@@ -1,10 +1,16 @@
 .sign_in {
-    margin: 100px auto 250px;
+    margin: 100px auto 180px;
     width: 80%;
 }
 
 .sign-in__headding {
     margin-bottom: 50px;
+    text-align: center;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+label {
     text-align: center;
 }
 

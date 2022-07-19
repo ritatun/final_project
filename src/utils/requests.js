@@ -3,6 +3,7 @@ import store from "../store/store";
 
 //-----------------------------------получить текущего сотрудника и сохранить в redux
 export function getOneOfficer(id, token) {
+  store.dispatch(loadDone(false));
   fetch(`https://sf-final-project.herokuapp.com/api/officers/${id}`, {
     method: "GET",
     headers: {
@@ -12,6 +13,7 @@ export function getOneOfficer(id, token) {
   })
     .then((response) => response.json())
     .then((result) => {
+      store.dispatch(loadDone(true));
       store.dispatch(saveOneOfficer(result.data));
     });
 }
@@ -59,6 +61,8 @@ export function getAllCases(token){
 
 //-----------------------------------получить текущее сообщение об ошибке и сохранить в redux
 export function getOneCase(id, token){
+  store.dispatch(loadDone(false));
+
   fetch(`https://sf-final-project.herokuapp.com/api/cases/${id}`, {
     method: "GET",
     headers: {
@@ -68,6 +72,7 @@ export function getOneCase(id, token){
   })
     .then((response) => response.json())
     .then((result) => {
+      store.dispatch(loadDone(true));
       store.dispatch(saveOneCase(result.data));
     });
 }

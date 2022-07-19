@@ -18,6 +18,7 @@ class CreateCase extends React.Component {
     this.state = {
       isSent: false,
       URL: this.props.state.islogged ? officerRequest : publicRequest,
+      errMsg: "",
     };
   }
 
@@ -27,55 +28,79 @@ class CreateCase extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.props.state.approvedOfficers.length) {
+      return;
+    }
+    if (this.props.state.islogged) {
+      getApprovedOfficers(localtoken);
+    }
+  }
+
   handleClick = (e) => {
     e.preventDefault();
-    const { islogged } = this.props.state;
+    const { islogged, newCase } = this.props.state;
     let response;
 
-    const { licenseNumber, name, color, date, description, type, officer } =
-      this.props.state.newCase;
+    if (!newCase.licenseNumber || !newCase.type || !newCase.name) {
+      this.setState({ errMsg: "заполните обязательные поля" });
+    } else {
+      const dataOfficer = {
+        licenseNumber: newCase.licenseNumber,
+        ownerFullName: newCase.name,
+        color: newCase.color ? newCase.color : null,
+        date: newCase.date ? newCase.date : null,
+        description: newCase.description ? newCase.description : null,
+        type: newCase.type,
+        officer: newCase.officer ? newCase.officer : null,
+      };
 
-    const dataOfficer = {
-      licenseNumber: licenseNumber,
-      ownerFullName: name,
-      color: color ? color : null,
-      date: date ? date : null,
-      description: description ? description : null,
-      type: type,
-      officer: officer ? officer : null,
-    };
+      const dataPublic = {
+        ...dataOfficer,
+        clientId: this.props.state.clientId,
+      };
 
-    const dataPublic = {
-      ...dataOfficer,
-      clientId: this.props.state.clientId,
-    };
+      const headersPublic = {
+        "Content-Type": "application/json",
+      };
 
-    const headersPublic = {
-      "Content-Type": "application/json",
-    };
+      const headersOfficer = {
+        ...headersPublic,
+        Authorization: `Bearer ${localtoken}`,
+      };
 
-    const headersOfficer = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localtoken}`,
-    };
+      const emptyCase = {
+        licenseNumber: null,
+        ownerFullName: null,
+        color: null,
+        date: null,
+        description: null,
+        type: null,
+        officer: null,
+      };
 
-    const headers = islogged ? headersOfficer : headersPublic;
-    fetch(this.state.URL, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(islogged ? dataOfficer : dataPublic),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        response = result;
-        if (response.status === "OK") {
-          this.setState({ isSent: true });
-        }
+      fetch(islogged ? officerRequest : publicRequest, {
+        method: "POST",
+        headers: islogged ? headersOfficer : headersPublic,
+        body: JSON.stringify(islogged ? dataOfficer : dataPublic),
       })
-      .catch((err) => console.log(err));
+        .then((res) => res.json())
+        .then((result) => {
+          response = result;
+          if (response.status === "OK") {
+            this.setState({ isSent: true });
+            store.dispatch(createNewCase(emptyCase));
+          } else {
+            this.setState({ errMsg: response.message });
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   handleChange = (e, inputId) => {
+    this.setState({ errMsg: "" });
+
     let newCaseInfo = this.props.state.newCase;
     newCaseInfo[inputId] = e.target.value;
     store.dispatch(createNewCase(newCaseInfo));
@@ -94,7 +119,10 @@ class CreateCase extends React.Component {
 
     const hideOfficer = (
       <>
-        <label className="label description-label" htmlFor="description">
+        <label
+          className="case-label label description-label"
+          htmlFor="description"
+        >
           Ответственный сотрудник:
         </label>
         {approvedOfficers ? (
@@ -120,7 +148,10 @@ class CreateCase extends React.Component {
 
     const form = (
       <form className="createCase-left">
-        <label className="label licenseNumber-label" htmlFor="licenseNumber">
+        <label
+          className="case-label licenseNumber-label"
+          htmlFor="licenseNumber"
+        >
           Номер лицензии*
         </label>
         <input
@@ -133,7 +164,7 @@ class CreateCase extends React.Component {
           required
         />
 
-        <label className="label type-label">Тип велосипеда*</label>
+        <label className="case-label type-label">Тип велосипеда*</label>
         <select
           //value={type}
           onChange={(e) => this.handleChange(e, "type")}
@@ -145,7 +176,7 @@ class CreateCase extends React.Component {
           <option value="sport">спорт</option>
         </select>
 
-        <label className="label name-label" htmlFor="ownerFullName">
+        <label className="case-label name-label" htmlFor="ownerFullName">
           ФИО арендатора велосипеда*
         </label>
         <input
@@ -158,7 +189,7 @@ class CreateCase extends React.Component {
           required
         />
 
-        <label className="label color-label" htmlFor="color">
+        <label className="case-label color-label" htmlFor="color">
           Цвет велосипеда
         </label>
         <input
@@ -169,7 +200,7 @@ class CreateCase extends React.Component {
           onChange={(e) => this.handleChange(e, "color")}
         />
 
-        <label className="label date-label" htmlFor="date">
+        <label className="case-label date-label" htmlFor="date">
           Дата кражи
         </label>
         <input
@@ -180,7 +211,7 @@ class CreateCase extends React.Component {
           onChange={(e) => this.handleChange(e, "date")}
         />
 
-        <label className="label description-label" htmlFor="description">
+        <label className="case-label description-label" htmlFor="description">
           Дополнительный комментарий
         </label>
         <input
@@ -202,22 +233,29 @@ class CreateCase extends React.Component {
         >
           ОТПРАВИТЬ СООБЩЕНИЕ О КРАЖЕ
         </button>
+        <span className="case-errMsg err-msg">{this.state.errMsg}</span>
       </form>
     );
 
     const content = isSent ? msg : form;
 
     return (
-      <div className="createCase-container">
-        <div>{content}</div>
-        <div className="createCase-rigth">
-          <img
-            className={`case-img ${isSent ? "sended" : ""}`}
-            src={Image}
-            alt="bike"
-          />
+      <main className="createCase-container">
+        <h1 className="createCase-title">НОВОЕ СООБЩЕНИЕ О КРАЖЕ</h1>
+        <div className="createCase-flexcontainer">
+          <div>{content}</div>
+          <div className="createCase-rigth">
+            <img
+              className={`case-img ${isSent ? "sended" : ""}`}
+              src={Image}
+              alt="bike"
+            />
+            <div
+              className={`createCase-rigth-send ${isSent ? "show" : ""}`}
+            ></div>
+          </div>
         </div>
-      </div>
+      </main>
     );
   }
 }

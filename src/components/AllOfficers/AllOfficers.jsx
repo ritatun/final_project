@@ -30,16 +30,18 @@ const AllOfficers = (props) => {
   if (props.state.isLoadDone) {
     if (props.state.islogged) {
       return (
-        <section className="all-officers">
+        <main className="all-officers">
           <div className="headding">ОТВЕТСТВЕННЫЕ СОТРУДНИКИ</div>
-          <table className="table">
+          <table className="table table-officers">
             <thead className="table-head">
               <tr className="table-row">
                 <th>Имя сотрудника</th>
                 <th>Фамилия сотрудника</th>
-                <th>E-mail адрес сотрудника</th>
+                <th className="small-screen-officer">
+                  E-mail адрес сотрудника
+                </th>
                 <th className="small-screen-officer">Статус сотрудника</th>
-                <th>Удалить сотрудника</th>
+                <th>Действия</th>
               </tr>
             </thead>
 
@@ -49,11 +51,11 @@ const AllOfficers = (props) => {
                   <tr className="table-row" key={item._id}>
                     <td>{item.firstName}</td>
                     <td>{item.lastName}</td>
-                    <td>{item.email}</td>
+                    <td className="small-screen-officer">{item.email}</td>
                     <td className="small-screen-officer">
                       {item.approved ? "одобрен" : "не одобрен"}
                     </td>
-                    <td>
+                    <td className="officer-btns">
                       <Link
                         className="button table-btn"
                         to={`/officers/${item._id}`}
@@ -72,7 +74,7 @@ const AllOfficers = (props) => {
               })}
             </tbody>
           </table>
-        </section>
+        </main>
       );
     } else {
       return (
