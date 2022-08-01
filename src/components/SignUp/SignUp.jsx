@@ -35,10 +35,10 @@ const SignUp = (props) => {
       setMsg("Пароли не совпадают");
       return;
     }
-    if (!authorize.clientId) {
+    /* if (!authorize.clientId) {
       setMsg("clientId не введен");
       return;
-    }
+    } */
 
     setMsg("");
 
@@ -47,7 +47,7 @@ const SignUp = (props) => {
     const body = {
       email: authorize.login,
       password: authorize.pass,
-      clientId: authorize.clientId,
+      clientId: props.state,
       firstName: authorize.firstName,
       lastName: authorize.lastName,
     };
@@ -117,14 +117,14 @@ const SignUp = (props) => {
             onChange={(e) => handleInputChange(e, "passRepeat")}
           />
 
-          <label htmlFor="clientId">Введите Client ID*</label>
+          {/* <label htmlFor="clientId">Введите Client ID*</label>
           <input
             className="sign-up__clientId"
             type="text"
             id="clientId"
             required
             onChange={(e) => handleInputChange(e, "clientId")}
-          />
+          /> */}
 
           <p>* обязательное для заполнения поле</p>
           <p className="err-msg">{msg}</p>
@@ -155,5 +155,5 @@ function mapStateToProps(state) {
     state: state.clientId,
   };
 }
-
+//hugrid@m.com
 export default connect(mapStateToProps)(SignUp);
